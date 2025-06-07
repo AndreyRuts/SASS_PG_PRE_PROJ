@@ -46,3 +46,14 @@ $values: start, end, center, stretch;
 .flex-wrap {
     flex-wrap: wrap;
 }
+
+.poster {
+    @include mq($bp: md, $type: max, $is-retina: true) {
+        background-image: url('../images/image_@2x.jpg');
+    }
+}
+
+.box {
+    @include mq($bp: xl) {
+        display: flex;
+    } }
