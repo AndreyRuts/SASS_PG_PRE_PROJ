@@ -1,0 +1,16 @@
+// @use 'sass:math';
+
+@use 'btn-schema' as vars with(
+    $font-size: 22px,
+    $btn-color: black,
+    $btn-bg-color: lightblue
+);
+
+.small-btn{
+    font-size: vars.$font-size;
+    color: vars.$btn-color;
+    background-color: vars.$btn-bg-color;
+}
+
+
+// @debug math.$pi;

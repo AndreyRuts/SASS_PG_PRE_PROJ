@@ -1,0 +1,116 @@
+// Simple mixins without args
+// @mixin frame_size($width, $height: $width) {
+//     width: $width;
+//     height: $height;
+// }
+
+// %size {
+//     width: 150px;
+//     height: 150px;
+// }
+
+// .avatar {
+//     @include frame-size(150px);
+//     @extend %size;
+
+//     border-radius: 50%;
+// }
+
+// .icon {
+//     @include frame-size(50px);
+//     @extend %size;
+
+//     border-radius: 2px solid lightblue;
+// }
+
+// Mixins with args
+// @mixin position-center {  // np args
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+// }
+
+// .decoration {
+//     @include position-center();
+// }
+
+// Mixins with args
+// @mixin position ($position-type, $position-x, $position-y, $offset-x, $offset-y) {
+//     position: $position-type;
+//     top: $position-y;
+//     left: $position-x;
+//     transform: translate($offset-x, $offset-y);
+// }
+
+// .decoration {
+//     @include position(absolute, 50%, 50%, -50%, -50%)
+// }
+
+// Optional params
+// @mixin position (
+//     $layer-index, // this args is required also required params must be on top of rule
+//     $display,
+
+//     $position-type: absolute, 
+//     $position-x: 50%, 
+//     $position-y: $position-x, 
+//     $offset-x: $position-x, 
+//     $offset-y: $position-x
+//     ) {
+//     position: $position-type;
+//     top: $position-y;
+//     left: $position-x;
+//     transform: translate(($offset-x * -1), ($offset-y * -1));
+//     z-index: $layer-index;
+//     display: $display;
+// }
+
+// .decoration {
+//     @include position($offset-y: 70%, $layer-index: 100, $display: block); 
+// } // if in args key + value => doesn't matter order
+
+// List of args with iterator
+// @mixin btn-size ($args...) {
+//     @for $i from 1 through length($args) {
+//         #{nth($args, $i)} {
+//             $factor: ($i * 4 - 4);
+
+//             padding: (4px + $factor) (8px + $factor); // all this code generates several css selectors
+//             border-radius: (8px + $factor);
+//         }
+//     }
+// }
+
+// @include btn-size('.btn-sm', '.btn-md', '.btn-lg') // number of args is free
+
+// useful example 
+@use 'sass:meta';
+
+@mixin btn-type($types...) { // btw in $args - styles map
+    @each $name, $color in meta.keywords($types) {
+        .btn-#{$name} {
+            border: 2px solid $color;
+            color: $color;
+        }
+    }
+}
+
+@include btn-type($success: lightgreen, $error: tomato, $info: lightblue)
+
+// // @content directive can provide mixin with whole style block
+// @mixin hover($state) {
+//     &:not([#{disabled}]):hover{
+//         @content;
+//     }
+// }
+
+// .button {
+//     background-color: white;
+//     border: 1px solid darkblue;
+
+//     @include hover($state: disabled) {
+//         color: wheat;
+//         background-color: darkblue;
+//     }
+// }

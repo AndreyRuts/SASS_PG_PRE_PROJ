@@ -1,0 +1,16 @@
+$types: (
+    'primary': orange,
+    'success': green,
+    'danger': darkred,
+    'warning': violet,
+    'info': rgb(44, 119, 145), // you can add new values => new class in CSS
+);
+
+// lets generate list of notification classes
+@each $key, $value in $types {
+    .alert-#{$key} {
+        background-color: $value;
+    }
+}
+
+// good working example

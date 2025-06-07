@@ -1,0 +1,35 @@
+@mixin fonts ($fs, $fw: null, $lh: null, $ls: null, $align: null) {
+    font-size: $fs;
+
+    @if $fw {
+        font-weight: $fw;
+    }
+
+    @if $lh {
+        @if $lh ==normal {
+            line-height: normal;
+        }
+
+        @else if math.unit($lh)=='px' {
+            line-height: calc($lh / $fs); // this example used when we have to recalc dimensions from px to rem? 
+        }
+
+        @else {
+            @error 'lh value #{$lh} is incorrect';
+        }
+    }
+
+    @if $ls {
+        @if $ls ==normal {
+            letter-spacing: normal;
+        }
+
+        @else {
+            letter-spacing: #{calc($ls / $fs)}em;
+        }
+    }
+
+    @if $align {
+        text-align: $align;
+    }
+}

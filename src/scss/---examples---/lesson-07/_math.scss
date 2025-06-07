@@ -1,0 +1,37 @@
+.box {
+    width: 600px + 20px;
+    height: calc(600px - 50%); // if you want to math diff types
+}
+
+$value: 600px;
+
+// .box {
+//     width: 600px * 2;
+//     width: 600px * 2 + 50px;
+//     width: (600px + 50px) * 2; // some math operations examples
+
+//     width: $value / 5;
+//     width: $value / 5px; // lol no px in result
+//     width: (600px / 5);
+//     width: 600px / 5px + 10px;
+
+//     @debug (600px / 5px); // 120 - no px in result 
+//     @debug (120 + 10px); // 130
+// }
+
+// interpolation
+
+$name: 'box';
+$margin: 100px;
+
+.box {
+    margin: $margin * 2;
+    margin: calc(#{$margin} * 2%); // special interpolation sint, also for diff types operations
+}
+
+//examples
+
+.#{$name} { // interpol for name of classes
+    margin: $margin;
+}
+

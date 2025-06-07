@@ -1,0 +1,19 @@
+ul > { // example 1 - simplest?
+    li {
+        list-style: none;
+    }
+}
+
+h2 { // example 2
+    + p {
+        border-radius: 1px solid gray;
+    }
+}
+
+p { // example 3
+    ~ {
+        span {
+            opacity: 0.8;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+// @for at-rule with calculations
+$base-weight: 400;
+
+@for $i from 0 through 3 { // it is better... i think it counts (0 1 2 3)
+    .fw-#{$base-weight + ($i * 100)} {
+        font-weight: $base-weight + ($i * 100);
+    }
+}
+
+// // difference between 'through' and 'to'
+// @for $i from 0 to 3 {
+//     @debug $i; // 0 1 2
+// }
+
+@for $_ from 0 through 3 {
+    @debug $_; // little bit professional sint
+}
+
+// @while $n < 4 { // while example sad but no practical use of this (not recommended)
+//     $n: $n + 1;
+// }

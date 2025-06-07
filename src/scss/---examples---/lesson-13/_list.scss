@@ -1,0 +1,39 @@
+@use 'sass:list';
+
+// list examples
+$list: 8, 10, 12 14, 16;
+$list: 1px solid red;
+ 
+// list.nth() function
+$numbers: 10px, 12px, 16px;
+@debug list.nth($numbers, 2); // lol, seems there is no 0 index...
+
+// list.length() function
+$colors: red, green, blue; // simple shit
+@debug list.length($colors); // 3
+
+// use list with @each or @for
+$sizes: 40px, 50px, 80px;
+@each $size in $sizes {
+    .icon-#{$size} {
+        font-size: $size;
+        height: $size;
+        width: $size;
+    }
+}
+
+// use list with for
+$button-types: '.btn-sm', '.btn-md', '.btn-lg', '.btn-xl';
+@mixin btn-size($types) {
+    @for $i from 1 through list.length($types) {
+        #{list.nth($types, $i)} { // btw lists in this case immutable
+            $factor: ($i * 5 - 5);
+
+            padding: (5px + $factor) (10px + $factor);
+            border-radius: (10px + $factor);
+        }
+    }
+}
+// very useful for generation lists of colors, dimenssion etc
+
+@include btn-size($button-types); // func call with list of variables

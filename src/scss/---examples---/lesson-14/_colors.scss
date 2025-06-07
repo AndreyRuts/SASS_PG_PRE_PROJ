@@ -1,0 +1,28 @@
+@use 'sass:map';
+
+// this is simple not connected colors...
+$color-primary: red;
+$color-accent: orange;
+$color-secondary: darkred;
+$color-foreground: black;
+$color-background: white;
+
+// this is example of dictionary map?
+$colors: (
+    'primary': red,
+    'accent': orange,
+    'secondary': darkred,
+    'foreground': black,
+    'background': white,
+);
+
+// lets get some value from $colors
+body {
+    background-color: map-get($colors, accent);
+}
+
+// lets write util function for get some value from $colors
+@function get-color($key){
+    @return map.get($colors, $key);
+}
+
